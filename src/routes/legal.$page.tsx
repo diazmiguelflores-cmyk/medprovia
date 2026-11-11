@@ -203,7 +203,7 @@ function Legal() {
 
             <div className="border-t border-border pt-6 text-xs text-muted-foreground space-y-2">
               <p>{trademarkNotice}</p>
-              <p>For legal inquiries, contact compliance@medprovia.com.</p>
+              <p>For legal inquiries, contact info@medprovia.com.</p>
             </div>
           </main>
         </div>

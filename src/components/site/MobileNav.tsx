@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
-import { Home, LayoutGrid, Mail, Menu, Moon, Phone, Search, ShoppingBag, Sun, Tag, User, X, MessageCircle, BadgeCheck } from "lucide-react";
+import { Home, LayoutGrid, Mail, Menu, Moon, Search, ShoppingBag, Sun, Tag, User, X, BadgeCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -238,11 +238,9 @@ export function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => 
               ))}
             </div>
             <div className="border-t border-border p-4 pb-safe">
-              <div className="grid grid-cols-3 gap-2">
-                <Button variant="outline" size="sm" asChild><a href={`tel:${contact.phone}`}><Phone />Call</a></Button>
-                <Button variant="outline" size="sm" asChild><a href={`https://wa.me/${contact.whatsapp.replace(/\D/g, "")}`}><MessageCircle />Chat</a></Button>
-                <Button variant="outline" size="sm" asChild><a href={`mailto:${contact.email}`}><Mail />Email</a></Button>
-              </div>
+              <Button variant="outline" size="sm" className="w-full justify-center" asChild>
+                <a href={`mailto:${contact.email}`}><Mail className="mr-2 h-4 w-4" />{contact.email}</a>
+              </Button>
               <div className="mt-3 flex items-center justify-between">
                 <label className="flex items-center gap-2 text-sm text-muted-foreground">
                   <span className="sr-only">Currency</span>

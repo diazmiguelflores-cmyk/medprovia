@@ -76,17 +76,10 @@ export function Footer() {
             <h3 className="mb-4 font-sans text-xs font-semibold uppercase tracking-widest text-gold">Contact</h3>
             <ul className="space-y-2 text-sm opacity-80">
               <li>
-                <a href={`mailto:${contact.email}`} className="hover:text-gold transition">
+                <a href={`mailto:${contact.email}`} className="hover:text-gold transition font-medium">
                   {contact.email}
                 </a>
               </li>
-              <li>
-                <a href={`tel:${contact.phone}`} className="hover:text-gold transition">
-                  {contact.phone}
-                </a>
-              </li>
-              <li>WhatsApp: {contact.whatsapp}</li>
-              <li>{contact.hours}</li>
             </ul>
             <div className="mt-4 flex items-center gap-1.5 text-xs text-gold">
               <ShieldCheck className="h-4 w-4 shrink-0" />

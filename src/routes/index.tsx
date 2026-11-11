@@ -171,7 +171,7 @@ function WhyUs() {
     [Scale, "Price-match program", "Send a verified lower quote and we'll review it."],
     [ShieldCheck, "Authenticity & traceability", "Original packaging with original lot numbers."],
     [Snowflake, "Cold-chain express", "Temperature-controlled with a delivery guarantee."],
-    [Headset, "Dedicated account manager", "Phone, WhatsApp and chat support."],
+    [Headset, "Dedicated account manager", "Responsive support via info@medprovia.com."],
   ] as const;
   return (
     <section className="py-20 lg:py-28">

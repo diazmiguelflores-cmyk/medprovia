@@ -1,8 +1,5 @@
 export const contact = {
   email: "info@medprovia.com",
-  phone: "+1 000 000 0000",
-  whatsapp: "+1 000 000 0000",
-  hours: "Mon–Fri · 8:00–18:00 (EST)",
 };
 
 export const complianceNotice =
@@ -44,7 +41,7 @@ export const services: InfoPage[] = [
   { slug: "order-tracking", title: "Order tracking", icon: "MapPin", summary: "Track every shipment from dispatch to your door.", points: ["Live tracking links", "Cold-chain status notes", "Proactive delay notifications"] },
   { slug: "license-verification", title: "License verification", icon: "BadgeCheck", summary: "A fast, secure check of your professional credentials.", points: ["Upload license once", "Usually reviewed within 24 hours", "Renewal reminders"] },
   { slug: "worldwide-shipping", title: "Worldwide shipping", icon: "Globe2", summary: "Temperature-controlled express shipping to many countries.", points: ["Insulated packaging", "Customs documentation support", "Free replacement on qualifying delays"] },
-  { slug: "account-manager", title: "Dedicated account manager", icon: "Headset", summary: "One point of contact via phone, WhatsApp or chat.", points: ["Restock reminders", "Product sourcing requests", "Order and invoice support"] },
+  { slug: "account-manager", title: "Dedicated account manager", icon: "Headset", summary: "Direct assistance via email at info@medprovia.com.", points: ["Restock reminders", "Product sourcing requests", "Order and invoice support"] },
 ];
 
 export const programs: InfoPage[] = [

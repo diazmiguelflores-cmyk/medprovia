@@ -33,7 +33,7 @@ const values = [
   {
     icon: UserCheck,
     title: "Practitioner-First Service",
-    desc: "Dedicated personal account managers accessible via phone, WhatsApp, and email to support clinic restocking schedules.",
+    desc: "Dedicated personal account managers accessible via email at info@medprovia.com to support clinic restocking schedules.",
   },
 ];
 
