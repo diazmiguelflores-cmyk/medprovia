@@ -1,0 +1,887 @@
+[
+  {
+    "slug": "juvederm-skinvive",
+    "name": "JUVEDERM® SKINVIVE",
+    "brand": "juvederm",
+    "category": "dermal-fillers",
+    "price": 185,
+    "size": "2 x 1 ml",
+    "type": [
+      "HA",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/juvederm-skinvive.webp",
+    "description": "Juvederm® Skinvive — Intradermal Hyaluronic Acid for Cheek Skin Smoothness & Facial Hydration Most dermal filler injection protocols address volume loss or structural contouring, yet declining intradermal hydration is a separate clinical concern that...",
+    "hue": 111
+  },
+  {
+    "slug": "juvederm-volite",
+    "name": "JUVÉDERM® VOLITE® with Lidocaine (SKINVIVE™)",
+    "brand": "juvederm",
+    "category": "dermal-fillers",
+    "price": 175,
+    "size": "2 x 1 ml",
+    "type": [
+      "HA",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/juvederm-volite.webp",
+    "description": "Where can I buy JUVÉDERM® VOLITE® with Lidocaine? Purchase Juvederm ® VOLITE® with Lidocaine online from Medica Depot. Enjoy the convenience of being able to buy this and other aesthetic products online while benefitting from low, wholesale prices. M...",
+    "hue": 222
+  },
+  {
+    "slug": "restylane-eyelight",
+    "name": "RESTYLANE® EYELIGHT™",
+    "brand": "restylane",
+    "category": "dermal-fillers",
+    "price": 155,
+    "size": "1 x 0.5 ml",
+    "type": [
+      "HA",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/restylane-eyelight.webp",
+    "description": "RESTYLANE® EYELIGHT™ Product Description RESTYLANE® EYELIGHT™ is an injectable hyaluronic acid-based gel designed to address infraorbital hollows. It is created using crosslinked HA from Streptococcus species bacteria and is suspended in phosphate-bu...",
+    "hue": 163
+  },
+  {
+    "slug": "belotero-balance",
+    "name": "BELOTERO® BALANCE with Lidocaine",
+    "brand": "belotero",
+    "category": "dermal-fillers",
+    "price": 148,
+    "size": "1 x 1 ml",
+    "type": [
+      "HA",
+      "FDA-approved",
+      "EU-approved"
+    ],
+    "badges": [
+      "FDA approved",
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/belotero-balance.webp",
+    "description": "What is BELOTERO® BALANCE? Made of sodium hyaluronate, BELOTERO® BALANCE is a high performance dermal filler that helps to correct the appearance of moderate skin folds, lines and wrinkles on the face. Furthermore, BELOTERO® is effective against atro...",
+    "hue": 92
+  },
+  {
+    "slug": "stylage-xl",
+    "name": "STYLAGE® XL BI-FLEX® with Lidocaine",
+    "brand": "stylage",
+    "category": "dermal-fillers",
+    "price": 168,
+    "size": "2 x 1 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/stylage-xl.webp",
+    "description": "STYLAGE® XL BI-FLEX® with Lidocaine — Injectable HA Dermal Filler for Deep Volumisation, Severe Volume Loss & Structural Facial Contouring Product Specifications Drug Class: Injectable hyaluronic acid dermal filler (cross-linked, deep plane, highest...",
+    "hue": 23
+  },
+  {
+    "slug": "stylage-m",
+    "name": "STYLAGE® M BI-FLEX® with Lidocaine",
+    "brand": "stylage",
+    "category": "dermal-fillers",
+    "price": 135,
+    "size": "2 x 1 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/stylage-m.webp",
+    "description": "STYLAGE® M BI-FLEX® with Lidocaine — Injectable HA Dermal Filler for Deep Wrinkles, Volume Restoration & Hand Rejuvenation Product Specifications Drug Class: Injectable hyaluronic acid dermal filler (cross-linked HA with IPN-Like Technology™, mannito...",
+    "hue": 251
+  },
+  {
+    "slug": "stylage-xxl",
+    "name": "STYLAGE® XXL BI-FLEX® with Mepivacaine",
+    "brand": "stylage",
+    "category": "dermal-fillers",
+    "price": 178,
+    "size": "2 x 1 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/stylage-xxl.webp",
+    "description": "STYLAGE® XXL BI-FLEX® with Mepivacaine — Injectable HA Dermal Filler for Extreme Volume Loss & Maximum-Depth Structural Facial Volumisation Product Specifications Drug Class: Injectable hyaluronic acid dermal filler (cross-linked, supraperiosteal/max...",
+    "hue": 241
+  },
+  {
+    "slug": "teosyal-rha-4",
+    "name": "TEOSYAL® RHA KISS with Lidocaine",
+    "brand": "teosyal",
+    "category": "dermal-fillers",
+    "price": 175,
+    "size": "2 x 1.2 ml",
+    "type": [
+      "HA",
+      "FDA-approved",
+      "EU-approved"
+    ],
+    "badges": [
+      "FDA approved",
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/teosyal-rha-4.webp",
+    "description": "TEOSYAL® RHA KISS with Lidocaine Product Description TEOSYAL® RHA KISS with Lidocaine is a hyaluronic acid-based dermal filler specifically designed to enhance lip volume and improve lip contour while maintaining a natural look. The product contains...",
+    "hue": 155
+  },
+  {
+    "slug": "saypha-volume-plus",
+    "name": "SAYPHA® VOLUME PLUS with Lidocaine",
+    "brand": "saypha",
+    "category": "dermal-fillers",
+    "price": 125,
+    "size": "1 x 1 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/saypha-volume-plus.webp",
+    "description": "SAYPHA® VOLUME PLUS with Lidocaine Product Description SAYPHA® VOLUME PLUS with Lidocaine is a hyaluronic acid-based dermal filler designed for the treatment of severe facial volume loss and contouring. It incorporates lidocaine (0.3%) for patient co...",
+    "hue": 39
+  },
+  {
+    "slug": "revolax-deep",
+    "name": "REVOLAX™ SUB-Q",
+    "brand": "revolax",
+    "category": "dermal-fillers",
+    "price": 62,
+    "size": "1 x 1.1 ml",
+    "type": [
+      "HA",
+      "Korean"
+    ],
+    "badges": [
+      "Korean"
+    ],
+    "inStock": true,
+    "image": "/products/revolax-deep.webp",
+    "description": "REVOLAX™ SUB-Q Product Summary REVOLAX™ SUB-Q is the thickest and most robust dermal filler within the REVOLAX range, specifically designed for deep to extremely severe wrinkles and facial contouring. This filler is ideal for creating definition and...",
+    "hue": 123
+  },
+  {
+    "slug": "neauvia-intense",
+    "name": "NEAUVIA™ ORGANIC INTENSE RHEOLOGY",
+    "brand": "neauvia",
+    "category": "dermal-fillers",
+    "price": 140,
+    "size": "1 x 1 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/neauvia-intense.webp",
+    "description": "NEAUVIA™ ORGANIC INTENSE RHEOLOGY Product Description NEAUVIA™ ORGANIC INTENSE RHEOLOGY is a cutting-edge dermal filler designed for natural correction of superficial and moderate wrinkles. Formulated with 22 mg/ml of hyaluronic acid (HA) cross-linke...",
+    "hue": 107
+  },
+  {
+    "slug": "filorga-art-filler",
+    "name": "FILORGA® ART FILLER® UNIVERSAL with Lidocaine",
+    "brand": "filorga",
+    "category": "dermal-fillers",
+    "price": 130,
+    "size": "2 x 1.2 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/filorga-art-filler.webp",
+    "description": "Manufacturer : Filorga Active Substance(s) : HYALURONIC ACID, LIDOCAINE Strength : 25mg of HA, 0.3% Lidocaine Pack Size : 2 x 1.2ml Pre-Filled Syringes, 4 x 27 G ½ Needles",
+    "hue": 172
+  },
+  {
+    "slug": "sculptra-aesthetic",
+    "name": "SCULPTRA® (2 vials)",
+    "brand": "sculptra",
+    "category": "biostimulators",
+    "price": 395,
+    "size": "2 vials",
+    "type": [
+      "Biostimulator",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/sculptra-aesthetic.png",
+    "description": "Can you buy Sculptra online? Sculptra is one of the most popular fillers among cosmetic surgeons and clients around the world. You can order Sculptra online from MedicaDepot.com at wholesale prices or you can phone our friendly customer care associat...",
+    "hue": 222
+  },
+  {
+    "slug": "radiesse-1-5",
+    "name": "RADIESSE® 3ml",
+    "brand": "radiesse",
+    "category": "biostimulators",
+    "price": 245,
+    "size": "1 x 1.5 ml",
+    "type": [
+      "Biostimulator",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/radiesse-1-5.webp",
+    "description": "What is Radiesse? Radiesse is a dermal filler indicated for the correction of moderate-to-severe facial folds and wrinkles e.g. nasolabial folds. In addition, Radiesse can be used for correcting volume loss in the back of the hands. This innovative c...",
+    "hue": 154
+  },
+  {
+    "slug": "ellanse-m",
+    "name": "ELLANSÉ™ M",
+    "brand": "ellanse",
+    "category": "biostimulators",
+    "price": 215,
+    "size": "2 x 1 ml",
+    "type": [
+      "Biostimulator",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/ellanse-m.webp",
+    "description": "What is Ellanse M? Ellanse M is an aesthetic filler made of polycaprolactone microspheres. It is often used as a bio-stimulator for immediate (and sustained) volume correction. Plus, it can be used to restore contours, as well as addressing wrinkles...",
+    "hue": 137
+  },
+  {
+    "slug": "harmonyca-lidocaine",
+    "name": "HArmonyCA™",
+    "brand": "harmonyca",
+    "category": "biostimulators",
+    "price": 260,
+    "size": "2 x 1.25 ml",
+    "type": [
+      "Biostimulator",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/harmonyca-lidocaine.webp",
+    "description": "HArmonyCA™ Product Description HArmonyCA™ is a hybrid injectable dermal filler combining hyaluronic acid (HA) and calcium hydroxyapatite (CaHA) . It is designed for facial soft tissue augmentation and offers a dual-action effect: immediate lifting an...",
+    "hue": 252
+  },
+  {
+    "slug": "profhilo-structura",
+    "name": "PROFHILO® STRUCTURA",
+    "brand": "profhilo",
+    "category": "skinboosters",
+    "price": 155,
+    "size": "1 x 2 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/profhilo-structura.webp",
+    "description": "PROFHILO® STRUCTURA – Key Features and Benefits PROFHILO® STRUCTURA is an injectable treatment specifically designed to restore facial structure by regenerating superficial fat layers. It repositions tissue lost to aging or weight loss, delivering a...",
+    "hue": 129
+  },
+  {
+    "slug": "rejuran-healer",
+    "name": "REJURAN® HEALER",
+    "brand": "rejuran",
+    "category": "skinboosters",
+    "price": 118,
+    "size": "2 x 2 ml",
+    "type": [
+      "Korean"
+    ],
+    "badges": [
+      "Korean"
+    ],
+    "inStock": true,
+    "image": "/products/rejuran-healer.webp",
+    "description": "What is Rejuran Healer? If you’ve ever searched for an advanced skin rejuvenation treatment, Rejuran Healer is a top choice. Manufactured by PharmaResearch Products Co., Ltd., this innovative serum is formulated with polynucleotides (PN) to support s...",
+    "hue": 65
+  },
+  {
+    "slug": "rejuran-hb",
+    "name": "REJURAN® HB",
+    "brand": "rejuran",
+    "category": "skinboosters",
+    "price": 125,
+    "size": "1 x 1 ml",
+    "type": [
+      "Korean"
+    ],
+    "badges": [
+      "Korean"
+    ],
+    "inStock": true,
+    "image": "/products/rejuran-hb.webp",
+    "description": "Manufacturer : Pharma Research Products Active Substance(s) : SODIUM POLYNUCLEOTIDE, SODIUM HYALURONATE, LIDOCAINE HYDROCHLORIDE Pack Size : 1 x 1ml Pre-Filled Syringes",
+    "hue": 114
+  },
+  {
+    "slug": "nucleofill-25",
+    "name": "NUCLEOFILL™ 25",
+    "brand": "nucleofill",
+    "category": "skinboosters",
+    "price": 110,
+    "size": "1 x 1.5 ml",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/nucleofill-25.webp",
+    "description": "Manufacturer: Promoitalia Group S.p.A. Active Substance(s): POLYNUCLEOTIDE GEL AT 2%",
+    "hue": 266
+  },
+  {
+    "slug": "nucleofill-eyes",
+    "name": "NUCLEOFILL™ EYES",
+    "brand": "nucleofill",
+    "category": "skinboosters",
+    "price": 105,
+    "size": "1 x 2 ml",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/nucleofill-eyes.webp",
+    "description": "Manufacturer: Promoitalia Group S.p.A. Active Substance(s): POLYNUCLEOTIDE GEL AT 2%",
+    "hue": 66
+  },
+  {
+    "slug": "plinest-mastelli",
+    "name": "PLINEST® ONE",
+    "brand": "plinest",
+    "category": "skinboosters",
+    "price": 98,
+    "size": "1 x 2 ml",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/plinest-mastelli.webp",
+    "description": "Manufacturer: Mastelli Active Substance(s): POLYNUCLEOTIDES HPT",
+    "hue": 232
+  },
+  {
+    "slug": "jalupro-young-eye",
+    "name": "JALUPRO® YOUNG EYE",
+    "brand": "jalupro",
+    "category": "skinboosters",
+    "price": 92,
+    "size": "1 x 1 ml",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/jalupro-young-eye.webp",
+    "description": "JALUPRO® YOUNG EYE – Key Features and Benefits JALUPRO® Young Eye is a targeted injectable treatment designed specifically for the periocular area . It reduces under-eye hollowness , dark circles , fine lines , and signs of fatigue using a blend of a...",
+    "hue": 245
+  },
+  {
+    "slug": "fillmed-nctf-135ha",
+    "name": "FILLMED® NCTF® 135 HA (5 vials)",
+    "brand": "fillmed",
+    "category": "mesotherapy",
+    "price": 129,
+    "size": "5 x 3 ml vials",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/fillmed-nctf-135ha.webp",
+    "description": "What is Fillmed® NCTF 135 HA (5 vials)? Fillmed® NCTF 135 HA is a solution of hyaluronic acid and patented NCTF anti-aging cocktail, intended for rejuvenating mesotherapy, biological reinvigoration, intensive rehydration of old skin, general rehydrat...",
+    "hue": 91
+  },
+  {
+    "slug": "cytocare-715",
+    "name": "CYTOCARE® 715 C-Line",
+    "brand": "cytocare",
+    "category": "mesotherapy",
+    "price": 115,
+    "size": "5 x 5 ml vials",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/cytocare-715.webp",
+    "description": "Manufacturer: Laboratoires Revitacare Active Substance(s): NON CROSSLINKED HYALURONIC ACID, CT50 Pack Size: 5 x 5ml/vial",
+    "hue": 220
+  },
+  {
+    "slug": "lemonbottle-ampoules",
+    "name": "LEMONBOTTLE AMPOULE SOLUTION 10ml",
+    "brand": "lemon-bottle",
+    "category": "body-sculpting",
+    "price": 120,
+    "size": "5 x 10 ml vials",
+    "type": [
+      "Korean"
+    ],
+    "badges": [
+      "Korean"
+    ],
+    "inStock": true,
+    "image": "/products/lemonbottle-ampoules.webp",
+    "description": "LEMONBOTTLE AMPOULE SOLUTION 10ml Key Features and Benefits LEMONBOTTLE AMPOULE SOLUTION 10ml is a highly concentrated lipolytic solution designed for body contouring and fat reduction treatments . It enhances metabolic activity, promotes fat breakdo...",
+    "hue": 212
+  },
+  {
+    "slug": "hyacorp-face",
+    "name": "HYAcorp™  FACE",
+    "brand": "hyacorp",
+    "category": "body-sculpting",
+    "price": 145,
+    "size": "2 x 2 ml",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/hyacorp-face.webp",
+    "description": "Manufacturer : Bio-Science Active Substance(s) : HYALURONIC ACID, CROSS LINKED HYALURONIC ACID, SODIUM CHLORIDE Strength : 2mg/ml, 20mg/ml, 6.9mg/ml Pack Size : 2 x 2ml Pre-Filled Syringes",
+    "hue": 101
+  },
+  {
+    "slug": "alidya-anti-cellulite",
+    "name": "ALIDYA™",
+    "brand": "alidya",
+    "category": "body-sculpting",
+    "price": 135,
+    "size": "5 vials",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/alidya-anti-cellulite.webp",
+    "description": "What is ALIDYA™? ALIDYA™ is a dense solution indicated for correcting profilometric surface alterations associated with gynoid lipodystrophy. In aesthetic medicine, ALIDYA™ is often used to improve body imperfections. Ghimas S.p.A., a pharmaceutical...",
+    "hue": 208
+  },
+  {
+    "slug": "rainbow-gold-mono",
+    "name": "RAINBOW GOLD EMBOSSING MONO 29G50 X20pcs",
+    "brand": "rainbow",
+    "category": "threads",
+    "price": 88,
+    "size": "20 threads / pack",
+    "type": [],
+    "badges": [],
+    "inStock": true,
+    "image": "/products/rainbow-gold-mono.webp",
+    "description": "RAINBOW GOLD EMBOSSING MONO 29G50 X20pcs Key Features and Benefits The RAINBOW GOLD EMBOSSING MONO 29G50 X20pcs offers a revolutionary approach to skin rejuvenation and lifting. With 99.99% pure gold coating , the product ensures a whitening, brighte...",
+    "hue": 52
+  },
+  {
+    "slug": "synvisc-one",
+    "name": "SYNVISC®",
+    "brand": "synvisc",
+    "category": "orthopedic",
+    "price": 310,
+    "size": "1 x 6 ml syringe",
+    "type": [
+      "HA",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/synvisc-one.webp",
+    "description": "Where can I buy this product? A medical doctor may purchase Synvisc online at low wholesale pricing from Medica Depot. What does this product come with? Each package contains: 3-2ml prefilled syringes; And 1 package insert. What are the benefits of d...",
+    "hue": 105
+  },
+  {
+    "slug": "durolane-3ml",
+    "name": "DUROLANE®",
+    "brand": "durolane",
+    "category": "orthopedic",
+    "price": 210,
+    "size": "1 x 3 ml syringe",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/durolane-3ml.webp",
+    "description": "What is DUROLANE® 60mg/3ml? DUROLANE® 60mg/3ml is a clear, viscous injectable gel consisting of highly purified hyaluronic acid. Clinically, DUROLANE® 60mg/3ml is indicated for the treatment of knee pain in osteoarthritis in those who have responded...",
+    "hue": 234
+  },
+  {
+    "slug": "orthovisc-syringe",
+    "name": "ORTHOVISC®",
+    "brand": "orthovisc",
+    "category": "orthopedic",
+    "price": 235,
+    "size": "3 x 2 ml syringes",
+    "type": [
+      "HA",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/orthovisc-syringe.webp",
+    "description": "Where can I buy Orthovisc? Orthovisc can help give your patients relief from discomfort in their joints. Licensed medical practitioners, hospitals, and clinics can buy Orthovisc online from Medica Depot. You can also read reviews from other practitio...",
+    "hue": 201
+  },
+  {
+    "slug": "cingal-syringe",
+    "name": "CINGAL®",
+    "brand": "cingal",
+    "category": "orthopedic",
+    "price": 265,
+    "size": "1 x 4 ml syringe",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/cingal-syringe.webp",
+    "description": "What is CINGAL®? CINGAL® is a hyaluronic acid gel containing micronized steroid particles. In patients who are unresponsive to pain medications (or conservative non-pharmacologic therapy), CINGAL® is injected intra-articularly to treat knee pain asso...",
+    "hue": 267
+  },
+  {
+    "slug": "monovisc-syringe",
+    "name": "MONOVISC®",
+    "brand": "monovisc",
+    "category": "orthopedic",
+    "price": 245,
+    "size": "1 x 4 ml syringe",
+    "type": [
+      "HA",
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/monovisc-syringe.webp",
+    "description": "WHAT IS MONOVISC®? MONOVISC®, a single-application hyaluronic acid injectable by Anika Therapeutics, is indicated for treating knee osteoarthritis. Among other viscosupplement options, Monovisc boasts its sterile, cross-linked sodium hyaluronate subs...",
+    "hue": 260
+  },
+  {
+    "slug": "biorepeelcl3-fnd",
+    "name": "BIOREPEELCL3® FND",
+    "brand": "biorepeel",
+    "category": "peels",
+    "price": 165,
+    "size": "5 x 6 ml vials",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/biorepeelcl3-fnd.webp",
+    "description": "BIOREPEEL CL3® FND Key Features and Benefits BIOREPEELCL3® FND is an advanced, patented, two-phase biostimulation peel for the face, neck, and décolleté . It combines chemical exfoliation with dermal regeneration to address skin aging, pigmentation,...",
+    "hue": 220
+  },
+  {
+    "slug": "prx-t33-peel",
+    "name": "WiQo® PRX-T33",
+    "brand": "prx",
+    "category": "peels",
+    "price": 180,
+    "size": "5 x 4 ml vials",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/prx-t33-peel.jpg",
+    "description": "PRX-T33® (WiQo®): Key Features and Benefits PRX-T33® (WiQo®) is an advanced topical solution designed to treat various skin conditions, particularly those associated with photo-aging, scars, and stretch marks. This treatment works by utilizing the be...",
+    "hue": 251
+  },
+  {
+    "slug": "zo-skin-health-serum",
+    "name": "ZO® SKIN COMPLEXION RENEWAL PADS",
+    "brand": "zo-skin-health",
+    "category": "skincare",
+    "price": 95,
+    "size": "1 x 50 ml",
+    "type": [],
+    "badges": [],
+    "inStock": true,
+    "image": "/products/zo-skin-health-serum.webp",
+    "description": "Manufacturer: ZO Skin Health",
+    "hue": 163
+  },
+  {
+    "slug": "exojuv-exosomes",
+    "name": "EXOJUV",
+    "brand": "exojuv",
+    "category": "prp-exosomes",
+    "price": 295,
+    "size": "20mg powder + 5ml activator",
+    "type": [
+      "Korean"
+    ],
+    "badges": [
+      "Korean"
+    ],
+    "inStock": true,
+    "image": "/products/exojuv-exosomes.webp",
+    "description": "EXOJUV Products Description EXOJUV is an advanced exosome-based regenerative solution designed to enhance cellular communication and promote skin healing. With a cutting-edge formulation containing 6 billion extracellular vesicles , it offers powerfu...",
+    "hue": 20
+  },
+  {
+    "slug": "plasmolifting-prp",
+    "name": "PLASMOLIFTING™ PRP GEL",
+    "brand": "plasmolifting",
+    "category": "prp-exosomes",
+    "price": 120,
+    "size": "Box of 10 vacuum tubes",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/plasmolifting-prp.webp",
+    "description": "Where can I buy the Plasmolifting PRP Kit? Plasmolifting PRP Gel is a solution for preparing PRP for injections. You can order Plasmolifting PRP Gel online from MedicaDepot.com or by calling our friendly customer service associates. When you buy whol...",
+    "hue": 256
+  },
+  {
+    "slug": "micronjet-30-needles",
+    "name": "MICRONJET™ 30 Needles",
+    "brand": "micronjet",
+    "category": "cannulas-needles",
+    "price": 145,
+    "size": "Box of 30 microneedles",
+    "type": [
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": "/products/micronjet-30-needles.webp",
+    "description": "MICRONJET™ 30 Needles Medica Depot carries MICRONJET™ 30 needles, an intradermal delivery device by NanoPass Technologies (Israel). The 30-pack supplies single-use microneedle units, each with three 0.6 mm pyramid-shaped needles made of pure silicon...",
+    "hue": 22
+  },
+  {
+    "slug": "softfil-precision-cannula",
+    "name": "KARISMA RH COLLAGEN SOFTFILLER BIORESTITUTIVO FACE",
+    "brand": "softfil",
+    "category": "cannulas-needles",
+    "price": 85,
+    "size": "Box of 20 cannulas",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/softfil-precision-cannula.webp",
+    "description": "KARISMA RH COLLAGEN SOFTFILLER BIORESTITUTIVO FACE Product Description KARISMA RH COLLAGEN SOFTFILLER BIORESTITUTIVO FACE is an innovative bio-restitutive soft filler designed to promote the natural restoration of pre-aging skin conditions. By stimul...",
+    "hue": 140
+  },
+  {
+    "slug": "meso-relle-32g",
+    "name": "MESO-RELLE® 32G - 6mm",
+    "brand": "meso-relle",
+    "category": "cannulas-needles",
+    "price": 42,
+    "size": "Box of 100 needles",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/meso-relle-32g.webp",
+    "description": "Manufacturer: Biotekne Active Substance(s): INDIVIDUALLY STERILIZED USING ETHYLENE OXIDE",
+    "hue": 123
+  },
+  {
+    "slug": "desirial-plus",
+    "name": "DESIRIAL® PLUS",
+    "brand": "desirial",
+    "category": "gynecology",
+    "price": 195,
+    "size": "1 x 2 ml syringe",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/desirial-plus.webp",
+    "description": "What is Desirial Plus? Desirial Plus is part of the Desirial product range, offering a sterile injectable gel made of hyaluronic acid and mannitol. It is commonly injected to treat moderate to severe hypotrophy, or atrophy, of the skin in the vulvar...",
+    "hue": 248
+  },
+  {
+    "slug": "desirial-original",
+    "name": "DESIRIAL® 1x1ml",
+    "brand": "desirial",
+    "category": "gynecology",
+    "price": 145,
+    "size": "1 x 1 ml syringe",
+    "type": [
+      "HA",
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": "/products/desirial-original.webp",
+    "description": "Manufacturer: Vivacy Active Substance(s): HYALURONIC ACID, MANNITOL Pack Size: 1x1ml prefilled syringes",
+    "hue": 169
+  },
+  {
+    "slug": "botox-100u",
+    "name": "Botox 100 Units (OnabotulinumtoxinA)",
+    "brand": "botox",
+    "category": "botulinum-toxins",
+    "price": 385,
+    "size": "1 vial · 100U",
+    "type": [
+      "FDA-approved"
+    ],
+    "badges": [
+      "FDA approved"
+    ],
+    "inStock": true,
+    "image": null,
+    "description": "Allergan OnabotulinumtoxinA powder for reconstitution. Guaranteed 2°C–8°C validated cold-chain transit from climate-controlled depot to clinic receipt.",
+    "hue": 220
+  },
+  {
+    "slug": "dysport-300u",
+    "name": "Dysport 300 Units (AbobotulinumtoxinA)",
+    "brand": "dysport",
+    "category": "botulinum-toxins",
+    "price": 345,
+    "size": "1 vial · 300U",
+    "type": [
+      "EU-approved"
+    ],
+    "badges": [
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": null,
+    "description": "Galderma/Ipsen AbobotulinumtoxinA. Formulated with human albumin and lactose for glabellar line smoothing and therapeutic spasticity indications.",
+    "hue": 220
+  },
+  {
+    "slug": "xeomin-100u",
+    "name": "Xeomin 100 Units (IncobotulinumtoxinA)",
+    "brand": "xeomin",
+    "category": "botulinum-toxins",
+    "price": 299,
+    "size": "1 vial · 100U",
+    "type": [
+      "FDA-approved",
+      "EU-approved"
+    ],
+    "badges": [
+      "FDA approved",
+      "EU approved"
+    ],
+    "inStock": true,
+    "image": null,
+    "description": "Merz IncobotulinumtoxinA purified neurotoxin free of complexing accessory proteins. Convenient room-temperature storage prior to reconstitution.",
+    "hue": 220
+  },
+  {
+    "slug": "careprost-bimatoprost",
+    "name": "Careprost Bimatoprost Ophthalmic Solution 0.03%",
+    "brand": "careprost",
+    "category": "eyelash",
+    "price": 38,
+    "size": "1 × 3 ml dropper bottle",
+    "type": [],
+    "badges": [],
+    "inStock": true,
+    "image": null,
+    "description": "Sun Pharma Bimatoprost 0.03% topical solution indicated for practitioner dispensing in eyelash hypotrichosis enhancement.",
+    "hue": 220
+  }
+]
