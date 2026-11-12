@@ -130,12 +130,12 @@ function Hero() {
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">
                       {tag}
                     </span>
-                    <h3 className="mt-0.5 font-display text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="mt-0.5 font-display text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors break-words">
                       <Link to="/product/$slug" params={{ slug: p.slug }}>
                         {p.name}
                       </Link>
                     </h3>
-                    <p className="mt-1 text-xs text-muted-foreground line-clamp-1">
+                    <p className="mt-1 text-xs text-muted-foreground line-clamp-1 break-words">
                       {spec}
                     </p>
                   </div>

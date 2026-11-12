@@ -18,12 +18,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   useEffect(() => { document.documentElement.classList.toggle("dark", dark); }, [dark]);
 
   return (
-    <div className="min-h-screen pb-28 lg:pb-0">
+    <div className="min-h-screen pb-28 lg:pb-0 w-full max-w-full overflow-x-hidden">
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground">Skip to content</a>
       <FloatingNav />
       <MobileTopBar onMenu={() => setDrawer(true)} />
       <MobileDrawer open={drawer} onClose={close} />
-        <motion.main id="main" key={path} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+        <motion.main id="main" key={path} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }} className="w-full max-w-full overflow-x-hidden">
           {children}
         </motion.main>
       <Footer />

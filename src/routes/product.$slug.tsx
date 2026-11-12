@@ -59,7 +59,7 @@ function ProductPage() {
 
   return (
     <>
-      <Container className="pb-10 pt-6 lg:pt-32">
+      <Container className="pb-10 pt-6 lg:pt-32 w-full max-w-7xl overflow-x-hidden">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem><BreadcrumbLink asChild><Link to="/shop">Shop</Link></BreadcrumbLink></BreadcrumbItem>
@@ -104,31 +104,33 @@ function ProductPage() {
 
           <div>
             <Link to="/brands/$slug" params={{ slug: p.brand }} className="text-sm font-semibold uppercase tracking-widest text-primary">{brandName(p.brand)}</Link>
-            <h1 className="mt-2 text-4xl font-medium text-foreground sm:text-5xl">{p.name}</h1>
-            <p className="mt-2 text-muted-foreground">{p.size} · {p.inStock ? "In stock" : "Out of stock"}</p>
+            <h1 className="mt-2 text-2xl font-semibold text-foreground sm:text-4xl lg:text-5xl break-words leading-tight">{p.name}</h1>
+            <p className="mt-2 text-sm sm:text-base text-muted-foreground break-words">{p.size} · {p.inStock ? "In stock" : "Out of stock"}</p>
             <div className="mt-4"><ApprovalBadges p={p} /></div>
-            <div className="mt-5 flex items-start gap-3 rounded-2xl border border-gold/40 bg-gold/10 p-4 text-sm text-foreground">
+            <div className="mt-5 flex items-start gap-3 rounded-2xl border border-gold/40 bg-gold/10 p-4 text-xs sm:text-sm text-foreground">
               <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-gold" /> Licensed professionals only. {complianceNotice}
             </div>
 
             {verified ? (
               <div className="mt-6">
                 <div className="flex items-baseline gap-3">
-                  <span className="text-4xl font-semibold text-foreground">{formatPrice(unit, currency)}</span>
-                  <span className="text-sm text-muted-foreground">per unit · sample price</span>
+                  <span className="text-3xl sm:text-4xl font-semibold text-foreground">{formatPrice(unit, currency)}</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground">per unit · sample price</span>
                 </div>
-                <table className="mt-4 w-full overflow-hidden rounded-2xl border border-border text-sm">
-                  <thead className="bg-sage text-left"><tr><th className="p-3 font-medium">Quantity</th><th className="p-3 font-medium">Unit price</th><th className="p-3 font-medium">You save</th></tr></thead>
-                  <tbody>
-                    {p.tiers.map((t, i) => (
-                      <tr key={t.min} className={cn("border-t border-border", unit === t.price && "bg-primary/5 font-semibold")}>
-                        <td className="p-3">{t.min}{i === p.tiers.length - 1 ? "+" : `–${(p.tiers[i + 1]?.min ?? 0) - 1}`}</td>
-                        <td className="p-3">{formatPrice(t.price, currency)}</td>
-                        <td className="p-3 text-primary">{Math.round((1 - t.price / p.price) * 100)}%</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div className="mt-4 w-full overflow-x-auto rounded-2xl border border-border">
+                  <table className="w-full min-w-[280px] text-sm">
+                    <thead className="bg-sage text-left"><tr><th className="p-3 font-medium">Quantity</th><th className="p-3 font-medium">Unit price</th><th className="p-3 font-medium">You save</th></tr></thead>
+                    <tbody>
+                      {p.tiers.map((t, i) => (
+                        <tr key={t.min} className={cn("border-t border-border", unit === t.price && "bg-primary/5 font-semibold")}>
+                          <td className="p-3">{t.min}{i === p.tiers.length - 1 ? "+" : `–${(p.tiers[i + 1]?.min ?? 0) - 1}`}</td>
+                          <td className="p-3">{formatPrice(t.price, currency)}</td>
+                          <td className="p-3 text-primary">{Math.round((1 - t.price / p.price) * 100)}%</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
                 <div className="mt-5 hidden items-center gap-3 sm:flex">
                   <QtyStepper value={qty} onChange={setQty} />
                   <Button size="lg" className="flex-1" disabled={!p.inStock} onClick={addToCart}><ShoppingBag />Add to cart</Button>
@@ -146,23 +148,26 @@ function ProductPage() {
                 </div>
               </div>
             )}
-            <Button variant="link" className="mt-3 px-0" asChild>
-              <Link to="/contact">
-                <FileText className="mr-1.5 h-4 w-4" /> Request a custom volume quote for {p.name}
+            <Button variant="link" className="mt-3 px-0 h-auto whitespace-normal text-left" asChild>
+              <Link to="/contact" className="inline-flex items-center gap-1.5 flex-wrap text-sm leading-normal">
+                <FileText className="h-4 w-4 shrink-0" />
+                <span>Request a custom volume quote for {p.name}</span>
               </Link>
             </Button>
 
-            <Tabs defaultValue="overview" className="mt-6">
-              <TabsList className="no-scrollbar w-full justify-start overflow-x-auto rounded-full">
-                <TabsTrigger value="overview">Overview</TabsTrigger>
-                <TabsTrigger value="usage">Usage info</TabsTrigger>
-                <TabsTrigger value="shipping">Shipping & returns</TabsTrigger>
-                <TabsTrigger value="auth">Authenticity</TabsTrigger>
-              </TabsList>
-              <TabsContent value="overview" className="pt-3 text-muted-foreground">{p.description}</TabsContent>
-              <TabsContent value="usage" className="pt-3 text-muted-foreground">For professional use only. Refer to the manufacturer's official instructions for use and local regulations. Medprovia does not provide treatment advice.</TabsContent>
-              <TabsContent value="shipping" className="pt-3 text-muted-foreground">Express shipping, cold-packed when required. Free replacement on qualifying delays or damage. See the <Link to="/legal/$page" params={{ page: "returns" }} className="text-primary underline">Returns policy</Link>.</TabsContent>
-              <TabsContent value="auth" className="pt-3 text-muted-foreground">Supplied in original packaging with the original manufacturer lot number, which can be verified on receipt.</TabsContent>
+            <Tabs defaultValue="overview" className="mt-6 w-full max-w-full">
+              <div className="w-full overflow-x-auto no-scrollbar">
+                <TabsList className="inline-flex w-max rounded-full">
+                  <TabsTrigger value="overview">Overview</TabsTrigger>
+                  <TabsTrigger value="usage">Usage info</TabsTrigger>
+                  <TabsTrigger value="shipping">Shipping & returns</TabsTrigger>
+                  <TabsTrigger value="auth">Authenticity</TabsTrigger>
+                </TabsList>
+              </div>
+              <TabsContent value="overview" className="pt-3 text-muted-foreground text-sm sm:text-base leading-relaxed">{p.description}</TabsContent>
+              <TabsContent value="usage" className="pt-3 text-muted-foreground text-sm sm:text-base leading-relaxed">For professional use only. Refer to the manufacturer's official instructions for use and local regulations. Medprovia does not provide treatment advice.</TabsContent>
+              <TabsContent value="shipping" className="pt-3 text-muted-foreground text-sm sm:text-base leading-relaxed">Express shipping, cold-packed when required. Free replacement on qualifying delays or damage. See the <Link to="/legal/$page" params={{ page: "returns" }} className="text-primary underline">Returns policy</Link>.</TabsContent>
+              <TabsContent value="auth" className="pt-3 text-muted-foreground text-sm sm:text-base leading-relaxed">Supplied in original packaging with the original manufacturer lot number, which can be verified on receipt.</TabsContent>
             </Tabs>
           </div>
         </div>

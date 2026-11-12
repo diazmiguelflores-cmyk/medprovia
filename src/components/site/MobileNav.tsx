@@ -18,7 +18,7 @@ export function MobileTopBar({ onMenu }: { onMenu: () => void }) {
   const path = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <header className="glass sticky top-0 z-40 border-b border-border/70 backdrop-blur-2xl bg-background/90 px-3 pt-2.5 pb-2 lg:hidden space-y-2 shadow-soft">
+    <header className="glass sticky top-0 z-40 border-b border-border/70 backdrop-blur-2xl bg-background/90 px-3 pt-2.5 pb-2 lg:hidden space-y-2 shadow-soft w-full max-w-full overflow-hidden">
       {/* Upper row: Native App Header with Menu Hamburger, Brand + PRO badge, and Verification Pill */}
       <div className="flex h-10 items-center justify-between gap-2">
         <button
@@ -125,7 +125,7 @@ export function BottomNav() {
       aria-label="Primary"
       animate={{ y: hidden ? 120 : 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed inset-x-3 bottom-3 z-40 lg:hidden"
+      className="fixed bottom-3 z-40 lg:hidden left-3 right-3 max-w-md mx-auto"
     >
       <ul className="glass pb-safe flex items-stretch justify-between rounded-3xl px-2 pt-2 shadow-lift">
         {tabs.map(({ to, label, icon: I }) => {
