@@ -70,8 +70,8 @@ function ProductPage() {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="mt-6 grid gap-10 lg:grid-cols-2">
-          <div>
+        <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-2 w-full min-w-0">
+          <div className="w-full min-w-0">
             <div
               className="relative aspect-square cursor-zoom-in overflow-hidden rounded-3xl border border-border bg-slate-50 dark:bg-slate-900"
               onMouseMove={(e) => { const r = e.currentTarget.getBoundingClientRect(); setZoom({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 }); }}
@@ -89,9 +89,9 @@ function ProductPage() {
                 )}
               </div>
             </div>
-            <div className="mt-3 flex gap-3">
+            <div className="mt-3 flex gap-3 overflow-x-auto no-scrollbar">
               {galleryImages.map((imgSrc, i) => (
-                <button key={i} onClick={() => setImg(i)} aria-label={`View image ${i + 1}`} className={cn("h-20 w-20 overflow-hidden rounded-xl border-2 bg-muted/30", img === i ? "border-primary" : "border-transparent")}>
+                <button key={i} onClick={() => setImg(i)} aria-label={`View image ${i + 1}`} className={cn("h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 bg-muted/30", img === i ? "border-primary" : "border-transparent")}>
                   {hasRealImg ? (
                     <img src={imgSrc as string} alt={`${p.name} view ${i + 1}`} className="h-full w-full object-contain p-1" />
                   ) : (
@@ -102,7 +102,7 @@ function ProductPage() {
             </div>
           </div>
 
-          <div>
+          <div className="w-full min-w-0">
             <Link to="/brands/$slug" params={{ slug: p.brand }} className="text-sm font-semibold uppercase tracking-widest text-primary">{brandName(p.brand)}</Link>
             <h1 className="mt-2 text-2xl font-semibold text-foreground sm:text-4xl lg:text-5xl break-words leading-tight">{p.name}</h1>
             <p className="mt-2 text-sm sm:text-base text-muted-foreground break-words">{p.size} · {p.inStock ? "In stock" : "Out of stock"}</p>
@@ -155,7 +155,7 @@ function ProductPage() {
               </Link>
             </Button>
 
-            <Tabs defaultValue="overview" className="mt-6 w-full max-w-full">
+            <Tabs defaultValue="overview" className="mt-6 w-full min-w-0 overflow-hidden">
               <div className="w-full overflow-x-auto no-scrollbar">
                 <TabsList className="inline-flex w-max rounded-full">
                   <TabsTrigger value="overview">Overview</TabsTrigger>
@@ -173,9 +173,9 @@ function ProductPage() {
         </div>
 
         {related.length > 0 && (
-          <section className="mt-20">
-            <h2 className="mb-6 text-3xl text-foreground">Related products</h2>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{related.map((r) => <ProductCard key={r.slug} p={r} />)}</div>
+          <section className="mt-20 w-full min-w-0">
+            <h2 className="mb-6 text-2xl sm:text-3xl text-foreground">Related products</h2>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 w-full min-w-0">{related.map((r) => <ProductCard key={r.slug} p={r} />)}</div>
           </section>
         )}
       </Container>
