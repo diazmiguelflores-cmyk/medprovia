@@ -159,11 +159,6 @@ function Checkout() {
     }
   };
 
-  // Alias so JSX below stays concise
-  const F = (props: Omit<React.ComponentProps<typeof CheckoutField>, "form" | "onChange">) => (
-    <CheckoutField {...props} form={form} onChange={setVal} />
-  );
-
   if (placed)
     return (
       <Container className="py-24 text-center lg:pt-40">
@@ -217,18 +212,18 @@ function Checkout() {
               <h2 className="font-display text-2xl text-foreground">Clinic shipping destination</h2>
               <p className="text-xs text-muted-foreground">Medprovia ships only to licensed clinical facilities.</p>
               <div className="grid gap-4 sm:grid-cols-2">
-                <F id="name" label="Practitioner full name" placeholder="Dr. Alexandra Rivera" />
-                <F id="clinic" label="Clinic / Practice name" placeholder="Aesthetic Dermatology Clinic" />
-                <F id="email" label="Clinic contact email" type="email" placeholder="orders@aestheticclinic.com" />
-                <F id="phone" label="Clinic direct phone" type="tel" placeholder="+1 (555) 019-2834" />
-                <F id="lic" label="Professional License #" placeholder="MD-98432-NY" />
-                <F id="country" label="Country" placeholder="United States" />
+                <CheckoutField id="name" label="Practitioner full name" placeholder="Dr. Alexandra Rivera" form={form} onChange={setVal} />
+                <CheckoutField id="clinic" label="Clinic / Practice name" placeholder="Aesthetic Dermatology Clinic" form={form} onChange={setVal} />
+                <CheckoutField id="email" label="Clinic contact email" type="email" placeholder="orders@aestheticclinic.com" form={form} onChange={setVal} />
+                <CheckoutField id="phone" label="Clinic direct phone" type="tel" placeholder="+1 (555) 019-2834" form={form} onChange={setVal} />
+                <CheckoutField id="lic" label="Professional License #" placeholder="MD-98432-NY" form={form} onChange={setVal} />
+                <CheckoutField id="country" label="Country" placeholder="United States" form={form} onChange={setVal} />
                 <div className="sm:col-span-2">
-                  <F id="addr" label="Street address" placeholder="Suite 400, 100 Medical Center Parkway" />
+                  <CheckoutField id="addr" label="Street address" placeholder="Suite 400, 100 Medical Center Parkway" form={form} onChange={setVal} />
                 </div>
-                <F id="city" label="City" placeholder="New York" />
-                <F id="state" label="State / Province" placeholder="NY" />
-                <F id="zip" label="Postal code" placeholder="10001" />
+                <CheckoutField id="city" label="City" placeholder="New York" form={form} onChange={setVal} />
+                <CheckoutField id="state" label="State / Province" placeholder="NY" form={form} onChange={setVal} />
+                <CheckoutField id="zip" label="Postal code" placeholder="10001" form={form} onChange={setVal} />
               </div>
             </div>
           )}
