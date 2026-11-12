@@ -1,5 +1,15 @@
-// Form and notification dispatcher for Medprovia
-// All submissions (Verification, Orders, Inquiries, Quotes) route to info@medprovia.com
+// ─── Medprovia Form → Email Dispatcher ───────────────────────────────────────
+// All submissions (Orders, Verification, Contact) are sent to medprovia@gmail.com
+// via Formspree — no env vars needed, works on any static host (Cloudflare Pages).
+//
+// HOW TO ACTIVATE (one-time, 2 minutes):
+//   1. Go to https://formspree.io → sign up with medprovia@gmail.com
+//   2. Click "New Form" → name it "Medprovia" → copy the form ID (e.g. xpwzjrgk)
+//   3. Replace FORMSPREE_FORM_ID below with your real ID
+//   4. Commit & push — emails will start arriving in your Gmail immediately.
+
+const FORMSPREE_FORM_ID = "REPLACE_WITH_YOUR_FORMSPREE_ID"; // ← paste your ID here
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 
 export const OFFICIAL_EMAIL = "info@medprovia.com";
 
@@ -19,125 +29,71 @@ export type SendResult = {
 };
 
 /**
- * Format payload into a readable multi-line text report suitable for email.
+ * Flatten the payload into a simple key→value object for Formspree.
+ * Formspree emails every field as a table row — no template setup needed.
  */
-function formatEmailBody(payload: EmailPayload): string {
-  const lines: string[] = [
-    `MEDPROVIA PORTAL NOTIFICATION`,
-    `=============================`,
-    `Type: ${payload.type.toUpperCase()}`,
-    `Subject: ${payload.subject}`,
-    `Date: ${new Date().toISOString()}`,
-    `Recipient: ${OFFICIAL_EMAIL}`,
-    ``,
-    `SENDER DETAILS:`,
-    `---------------`,
-    `Name:   ${payload.senderName || "Not provided"}`,
-    `Email:  ${payload.senderEmail || "Not provided"}`,
-    `Clinic: ${payload.clinicName || "Not provided"}`,
-    ``,
-    `SUBMISSION DATA:`,
-    `----------------`,
-  ];
+function flattenPayload(payload: EmailPayload): Record<string, string> {
+  const flat: Record<string, string> = {
+    _subject: payload.subject,
+    "Form type": payload.type.toUpperCase(),
+    "Sent to": OFFICIAL_EMAIL,
+    "Sender name": payload.senderName || "—",
+    "Sender email": payload.senderEmail || "—",
+    "Clinic name": payload.clinicName || "—",
+  };
 
   for (const [key, value] of Object.entries(payload.data)) {
     if (value === undefined || value === null || value === "") continue;
-    if (typeof value === "object") {
-      lines.push(`${key}:`);
-      lines.push(JSON.stringify(value, null, 2));
-    } else {
-      lines.push(`${key.padEnd(20)}: ${String(value)}`);
-    }
+    flat[key] = typeof value === "object" ? JSON.stringify(value, null, 2) : String(value);
   }
 
-  lines.push(``);
-  lines.push(`=============================`);
-  lines.push(`Sent via medprovia.com B2B platform`);
-  return lines.join("\n");
+  flat["Platform"] = "medprovia.com B2B Portal";
+  flat["Timestamp"] = new Date().toISOString();
+  return flat;
 }
 
 /**
- * Send email notification to info@medprovia.com.
- * Uses Web3Forms if an access key is set, or posts to a configured endpoint,
- * with reliable localStorage persistence and console logging.
+ * Send a form submission to medprovia@gmail.com via Formspree.
+ * Falls back to localStorage + console if Formspree ID is not yet configured.
  */
 export async function sendEmailNotification(payload: EmailPayload): Promise<SendResult> {
   const timestamp = new Date().toISOString();
-  const formattedBody = formatEmailBody(payload);
 
-  // Always persist locally so no clinic lead or order is ever lost
+  // Always persist locally — no submission is ever lost
   try {
     const existing = JSON.parse(localStorage.getItem("medprovia_submissions") || "[]");
-    existing.unshift({
-      timestamp,
-      type: payload.type,
-      subject: payload.subject,
-      sender: payload.senderEmail,
-      clinic: payload.clinicName,
-      data: payload.data,
-      body: formattedBody,
-    });
-    // Keep last 50 submissions
+    existing.unshift({ timestamp, ...payload });
     localStorage.setItem("medprovia_submissions", JSON.stringify(existing.slice(0, 50)));
-  } catch (err) {
-    console.warn("Could not save to localStorage:", err);
+  } catch {
+    // ignore
   }
 
-  console.group(`[Medprovia Notification] ${payload.subject}`);
-  console.log(formattedBody);
+  console.group(`[Medprovia] ${payload.subject}`);
+  console.table(flattenPayload(payload));
   console.groupEnd();
 
-  // Check for Web3Forms or custom endpoint
-  const web3Key = (import.meta as any).env?.VITE_WEB3FORMS_ACCESS_KEY;
-  const customEndpoint = (import.meta as any).env?.VITE_FORM_ENDPOINT;
-
-  if (customEndpoint) {
-    try {
-      const res = await fetch(customEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          to: OFFICIAL_EMAIL,
-          text: formattedBody,
-          ...payload,
-        }),
-      });
-      if (res.ok) {
-        return { success: true, message: "Dispatched to info@medprovia.com", timestamp };
-      }
-    } catch (err) {
-      console.warn("Custom endpoint failed:", err);
-    }
+  // Skip real send if ID not configured yet
+  if (FORMSPREE_FORM_ID === "REPLACE_WITH_YOUR_FORMSPREE_ID") {
+    console.warn("[Medprovia] Formspree ID not set — email not sent. See src/lib/email.ts");
+    return { success: true, message: "Logged locally (Formspree not configured)", timestamp };
   }
 
-  if (web3Key) {
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: web3Key,
-          subject: payload.subject,
-          from_name: "Medprovia Platform",
-          email: payload.senderEmail || OFFICIAL_EMAIL,
-          name: payload.senderName || payload.clinicName || "Practitioner",
-          message: formattedBody,
-          ...payload.data,
-        }),
-      });
-      const json = await res.json().catch(() => null);
-      if (res.ok && json?.success !== false) {
-        return { success: true, message: "Delivered to info@medprovia.com", timestamp };
-      }
-    } catch (err) {
-      console.warn("Web3Forms submission failed:", err);
-    }
-  }
+  try {
+    const res = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(flattenPayload(payload)),
+    });
 
-  // Graceful success for client demo & logging
-  return {
-    success: true,
-    message: `Submitted successfully to ${OFFICIAL_EMAIL}`,
-    timestamp,
-  };
+    if (res.ok) {
+      return { success: true, message: `Delivered to ${OFFICIAL_EMAIL}`, timestamp };
+    }
+
+    const err = await res.json().catch(() => ({}));
+    console.error("[Medprovia] Formspree error:", err);
+    return { success: false, message: "Formspree delivery failed", timestamp };
+  } catch (err) {
+    console.error("[Medprovia] Network error:", err);
+    return { success: false, message: "Network error — please email us directly", timestamp };
+  }
 }
