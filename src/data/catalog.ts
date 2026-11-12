@@ -74,6 +74,8 @@ export const brands: Brand[] = [
   b("TSK Laboratory", "Japan", ["cannulas-needles"]),
   b("Aqualyx", "Italy", ["body-sculpting"]),
   b("Lemon Bottle", "South Korea", ["body-sculpting"]),
+  b("Novo Nordisk", "Denmark", ["body-sculpting"]),
+  b("Eli Lilly", "USA", ["body-sculpting"]),
   b("Cellenis", "USA", ["prp-exosomes"]),
   b("Desirial", "France", ["gynecology"]),
   b("Careprost", "India", ["eyelash"]),
@@ -111,6 +113,24 @@ const P = (
 });
 
 export const products: Product[] = [
+  // --- TOP DEMAND GLP-1 & GIP INJECTABLES ---
+  P("ozempic-1mg", "Ozempic 1 mg (Semaglutide 4 mg/3 ml)", "novo-nordisk", "body-sculpting", 289, {
+    badges: ["FDA approved", "EU approved"],
+    type: ["FDA-approved", "EU-approved"],
+    size: "1 Pre-filled Multi-Dose Pen (4 doses × 1 mg)",
+    hue: 205,
+    image: "/products/ozempic-1mg.jpg",
+    description: "Once-weekly GLP-1 receptor agonist (semaglutide 1.34 mg/mL) pre-filled multi-dose pen. Subcutaneous administration for metabolic and medical body weight management. Ships with 4 disposable NovoFine Plus needles under continuous 2°C–8°C cold-chain logistics with verified lot traceability.",
+  }),
+  P("mounjaro-5mg", "Mounjaro 5 mg (Tirzepatide 5 mg/0.5 ml)", "eli-lilly", "body-sculpting", 329, {
+    badges: ["FDA approved", "EU approved"],
+    type: ["FDA-approved", "EU-approved"],
+    size: "4 × 0.5 ml Single-Dose Autoinjector Pens",
+    hue: 280,
+    image: "/products/mounjaro-5mg.jpg",
+    description: "First-in-class dual GIP and GLP-1 receptor agonist (tirzepatide 5 mg/0.5 mL) pre-filled single-dose autoinjector pens with hidden-needle safety mechanism. Engineered for once-weekly subcutaneous injection. Full cold-chain insulated transit guaranteed.",
+  }),
+
   // --- DERMAL FILLERS ---
   P("juvederm-voluma-xc", "Juvéderm Voluma XC", "juvederm", "dermal-fillers", 189, {
     badges: ["FDA approved"],
@@ -457,6 +477,8 @@ export const products: Product[] = [
 ];
 
 export const bestSellers = [
+  "ozempic-1mg",
+  "mounjaro-5mg",
   "botox-100u",
   "juvederm-voluma-xc",
   "profhilo-h-l",

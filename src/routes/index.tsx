@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, BadgeCheck, Gem, Globe2, Headset, PiggyBank, RefreshCw, Scale, ShieldCheck, Snowflake, Star, Truck, Users, Layers3, Quote } from "lucide-react";
+import { ArrowRight, BadgeCheck, Gem, Globe2, Headset, PiggyBank, RefreshCw, Scale, ShieldCheck, Snowflake, Sparkles, Star, Truck, Users, Layers3, Quote } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { bestSellers, brands, categories, getProduct } from "@/data/catalog";
+import { bestSellers, brands, categories, getProduct, formatPrice } from "@/data/catalog";
 import { faqs, posts, testimonials, trademarkNotice, complianceNotice } from "@/data/content";
 import { PostCard } from "@/components/site/PostCard";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -48,15 +48,28 @@ function Home() {
 }
 
 function Hero() {
-  const cards = [
-    { cls: "left-0 top-10", icon: ShieldCheck, t: "100% authentic", s: "Lot-number traceable" },
-    { cls: "right-0 bottom-16", icon: Truck, t: "Worldwide express", s: "Temperature-controlled" },
-  ];
+  const ozempic = getProduct("ozempic-1mg");
+  const mounjaro = getProduct("mounjaro-5mg");
+  const topProducts = [
+    {
+      p: ozempic,
+      manufacturer: "Novo Nordisk",
+      spec: "1 Pen (4 doses of 1 mg) + Needles",
+      tag: "GLP-1 Receptor Agonist",
+    },
+    {
+      p: mounjaro,
+      manufacturer: "Eli Lilly",
+      spec: "4 × 0.5 ml Autoinjector Pens",
+      tag: "Dual GIP / GLP-1 Agonist",
+    },
+  ].filter((item): item is typeof item & { p: NonNullable<typeof item.p> } => Boolean(item.p));
+
   return (
     <section className="relative overflow-hidden bg-mesh">
-      <Container className="grid items-center gap-12 pb-20 pt-10 lg:grid-cols-2 lg:pb-28 lg:pt-40">
+      <Container className="grid items-center gap-12 pb-20 pt-10 lg:grid-cols-[1.1fr_1fr] lg:pb-28 lg:pt-36">
         <Reveal>
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-card/70 px-3 py-1.5 text-xs font-semibold text-foreground">
+          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-card/70 px-3.5 py-1.5 text-xs font-semibold text-foreground">
             <BadgeCheck className="h-4 w-4 text-gold" /> For licensed healthcare professionals
           </p>
           <h1 className="text-[2.6rem] font-semibold leading-[1.08] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
@@ -66,23 +79,91 @@ function Hero() {
             Authentic, traceable products for clinics, med spas and practices worldwide — with tier pricing and cold-chain express shipping.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button variant="hero" size="lg" asChild><Link to="/shop">Shop Products <ArrowRight /></Link></Button>
+            <Button variant="hero" size="lg" asChild><Link to="/shop">Shop All Products <ArrowRight /></Link></Button>
             <Button variant="gold" size="lg" asChild><Link to="/register">Get Verified</Link></Button>
           </div>
         </Reveal>
-        <div className="relative mx-auto h-[380px] w-full max-w-md sm:h-[460px]">
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="absolute inset-x-10 inset-y-6 overflow-hidden rounded-[2.5rem] border border-border bg-muted/20 shadow-lift">
-            <img src="/products/profhilo-structura.webp" alt="Profhilo skinbooster" className="h-full w-full object-contain p-8" />
-          </motion.div>
-          <div className="absolute right-4 top-0 h-32 w-24 overflow-hidden rounded-3xl border border-border bg-muted/20 shadow-soft animate-floaty sm:right-0">
-            <img src="/products/botox-100u.webp" alt="Botox 100U" className="h-full w-full object-contain p-2" />
+
+        {/* Top 2 Products Showcase */}
+        <div className="relative mx-auto w-full max-w-xl">
+          <div className="mb-3.5 flex items-center justify-between">
+            <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-xs font-semibold text-foreground">
+              <Sparkles className="h-3.5 w-3.5 text-gold" />
+              <span>Top Demanded Medical Supplies</span>
+            </div>
+            <span className="text-xs text-muted-foreground flex items-center gap-1.5 font-medium">
+              <Snowflake className="h-3.5 w-3.5 text-primary" /> 2°C–8°C Cold-Chain
+            </span>
           </div>
-          {cards.map((c, i) => (
-            <motion.div key={c.t} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 + i * 0.2 }} className={`glass absolute ${c.cls} flex items-center gap-3 rounded-2xl p-3 pr-5 shadow-lift animate-floaty`} style={{ animationDelay: `${i * 1.5}s` }}>
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground"><c.icon className="h-5 w-5" /></span>
-              <span><span className="block text-sm font-semibold text-foreground">{c.t}</span><span className="block text-xs text-muted-foreground">{c.s}</span></span>
-            </motion.div>
-          ))}
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {topProducts.map(({ p, manufacturer, spec, tag }, idx) => (
+              <motion.div
+                key={p.slug}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card p-4 shadow-soft transition-all duration-300 hover:border-primary/50 hover:shadow-lift"
+              >
+                <div>
+                  <Link
+                    to="/product/$slug"
+                    params={{ slug: p.slug }}
+                    className="relative block aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted/30 border border-border/50"
+                  >
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute top-2.5 left-2.5 rounded-full bg-navy/90 backdrop-blur px-2.5 py-0.5 text-[11px] font-semibold text-white shadow-sm">
+                      {manufacturer}
+                    </span>
+                    <span className="absolute top-2.5 right-2.5 rounded-full bg-emerald-600 text-white px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-sm">
+                      In Stock
+                    </span>
+                  </Link>
+
+                  <div className="mt-3.5">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">
+                      {tag}
+                    </span>
+                    <h3 className="mt-0.5 font-display text-base font-semibold leading-snug text-foreground group-hover:text-primary transition-colors">
+                      <Link to="/product/$slug" params={{ slug: p.slug }}>
+                        {p.name}
+                      </Link>
+                    </h3>
+                    <p className="mt-1 text-xs text-muted-foreground line-clamp-1">
+                      {spec}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-border/70 flex items-center justify-between gap-2">
+                  <div>
+                    <span className="block text-[10px] uppercase tracking-wider text-muted-foreground">Unit Price</span>
+                    <span className="text-lg font-bold text-foreground">
+                      {formatPrice(p.price)}
+                    </span>
+                  </div>
+                  <Button size="sm" className="rounded-xl px-3.5 text-xs font-semibold gap-1.5" asChild>
+                    <Link to="/product/$slug" params={{ slug: p.slug }}>
+                      Order <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-card/90 border border-border px-3 py-1 shadow-xs">
+              <ShieldCheck className="h-3.5 w-3.5 text-primary" /> 100% Authentic Lot-Traceable
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-card/90 border border-border px-3 py-1 shadow-xs">
+              <Truck className="h-3.5 w-3.5 text-gold" /> Express Cold-Chain Delivery
+            </span>
+          </div>
         </div>
       </Container>
     </section>
