@@ -8,7 +8,7 @@
 //   3. Replace FORMSPREE_FORM_ID below with your real ID
 //   4. Commit & push — emails will start arriving in your Gmail immediately.
 
-const FORMSPREE_FORM_ID = "REPLACE_WITH_YOUR_FORMSPREE_ID"; // ← paste your ID here
+const FORMSPREE_FORM_ID = "xzerbjlj"; // → https://formspree.io/f/xzerbjlj → medprovia@gmail.com
 const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 
 export const OFFICIAL_EMAIL = "info@medprovia.com";
@@ -33,12 +33,15 @@ export type SendResult = {
  * Formspree emails every field as a table row — no template setup needed.
  */
 function flattenPayload(payload: EmailPayload): Record<string, string> {
+  const sender = payload.senderEmail || OFFICIAL_EMAIL;
   const flat: Record<string, string> = {
     _subject: payload.subject,
+    email: sender,
+    _replyto: sender,
     "Form type": payload.type.toUpperCase(),
     "Sent to": OFFICIAL_EMAIL,
     "Sender name": payload.senderName || "—",
-    "Sender email": payload.senderEmail || "—",
+    "Sender email": sender,
     "Clinic name": payload.clinicName || "—",
   };
 
@@ -72,8 +75,8 @@ export async function sendEmailNotification(payload: EmailPayload): Promise<Send
   console.table(flattenPayload(payload));
   console.groupEnd();
 
-  // Skip real send if ID not configured yet
-  if (FORMSPREE_FORM_ID === "REPLACE_WITH_YOUR_FORMSPREE_ID") {
+  // Skip real send if ID not configured
+  if (!FORMSPREE_FORM_ID || (FORMSPREE_FORM_ID as string) === "REPLACE_WITH_YOUR_FORMSPREE_ID") {
     console.warn("[Medprovia] Formspree ID not set — email not sent. See src/lib/email.ts");
     return { success: true, message: "Logged locally (Formspree not configured)", timestamp };
   }
