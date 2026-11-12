@@ -244,10 +244,9 @@ export function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => 
                 <label className="flex items-center gap-2 text-sm text-muted-foreground">
                   <span className="sr-only">Currency</span>
                   <select value={currency} onChange={(e) => setCurrency(e.target.value as Currency)} className="h-11 rounded-full border border-border bg-card px-3 text-sm text-foreground">
-                    <option>USD</option><option>EUR</option><option>GBP</option>
-                  </select>
-                  <select className="h-11 rounded-full border border-border bg-card px-3 text-sm text-foreground" aria-label="Language">
-                    <option>English</option><option>Français</option><option>Español</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
                   </select>
                 </label>
                 <Button variant="ghost" size="icon" aria-label="Toggle dark mode" onClick={toggleDark}>{dark ? <Sun /> : <Moon />}</Button>

@@ -13,6 +13,7 @@ import { PostCard } from "@/components/site/PostCard";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Container, Icon, Reveal, SectionHeading } from "@/components/site/primitives";
 import { sendEmailNotification } from "@/lib/email";
+import { useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,6 +49,7 @@ function Home() {
 }
 
 function Hero() {
+  const currency = useStore((s) => s.currency);
   const ozempic = getProduct("ozempic-1mg");
   const mounjaro = getProduct("mounjaro-5mg");
   const topProducts = [
@@ -143,7 +145,7 @@ function Hero() {
                   <div>
                     <span className="block text-[10px] uppercase tracking-wider text-muted-foreground">Unit Price</span>
                     <span className="text-lg font-bold text-foreground">
-                      {formatPrice(p.price)}
+                      {formatPrice(p.price, currency)}
                     </span>
                   </div>
                   <Button size="sm" className="rounded-xl px-3.5 text-xs font-semibold gap-1.5" asChild>
