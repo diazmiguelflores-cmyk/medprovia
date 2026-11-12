@@ -138,15 +138,19 @@ function ProductPage() {
             ) : (
               <div className="mt-6 rounded-2xl border border-border bg-card p-6 text-center">
                 <Lock className="mx-auto h-6 w-6 text-primary" />
-                <p className="mt-2 font-display text-xl text-foreground">Sign in & get verified to order</p>
-                <p className="mt-1 text-sm text-muted-foreground">Pricing is visible to verified professionals.</p>
+                <p className="mt-2 font-display text-xl text-foreground">Verify your license to order</p>
+                <p className="mt-1 text-sm text-muted-foreground">Wholesale pricing is unlocked upon professional license submission.</p>
                 <div className="mt-4 flex flex-col justify-center gap-2 sm:flex-row">
                   <Button variant="gold" asChild><Link to="/register">Get Verified</Link></Button>
                   <Button variant="outline" onClick={() => setVerified(true)}>Demo: view as verified</Button>
                 </div>
               </div>
             )}
-            <Button variant="link" className="mt-3 px-0" onClick={() => toast.success("Quote request sent (demo). Your account manager will reply.")}><FileText />Request a quote</Button>
+            <Button variant="link" className="mt-3 px-0" asChild>
+              <Link to="/contact">
+                <FileText className="mr-1.5 h-4 w-4" /> Request a custom volume quote for {p.name}
+              </Link>
+            </Button>
 
             <Tabs defaultValue="overview" className="mt-6">
               <TabsList className="no-scrollbar w-full justify-start overflow-x-auto rounded-full">

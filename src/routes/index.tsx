@@ -12,6 +12,7 @@ import { faqs, posts, testimonials, trademarkNotice, complianceNotice } from "@/
 import { PostCard } from "@/components/site/PostCard";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Container, Icon, Reveal, SectionHeading } from "@/components/site/primitives";
+import { sendEmailNotification } from "@/lib/email";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -318,7 +319,25 @@ function Cta() {
           <h2 className="mx-auto mt-4 max-w-2xl text-3xl text-foreground sm:text-5xl">Ready to restock with confidence?</h2>
           <p className="mx-auto mt-3 max-w-lg text-muted-foreground">Get verified in about a day and enjoy 5% off your first order.</p>
           <Button variant="hero" size="lg" asChild className="mt-6"><Link to="/register">Get Verified</Link></Button>
-          <form className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row" onSubmit={(e) => { e.preventDefault(); toast.success("Thanks — you're subscribed (demo)."); setEmail(""); }}>
+          <form
+            className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              if (email) {
+                await sendEmailNotification({
+                  type: "newsletter",
+                  subject: `[Subscriber Alert] New clinic newsletter signup: ${email}`,
+                  senderEmail: email,
+                  data: {
+                    "Subscriber Email": email,
+                    "Subscription Time": new Date().toLocaleString(),
+                  },
+                });
+                toast.success("Subscribed! Restock & tier price updates will be sent to your email.");
+                setEmail("");
+              }
+            }}
+          >
             <label htmlFor="nl" className="sr-only">Email</label>
             <Input id="nl" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Your clinic email" className="h-12 rounded-full bg-card px-5" />
             <Button type="submit" size="lg">Subscribe</Button>

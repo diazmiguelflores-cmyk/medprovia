@@ -1,28 +1,124 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check, CreditCard, ShieldCheck } from "lucide-react";
+import { Check, CreditCard, FileText, Loader2, ShieldCheck, Truck } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { DiscountInput, useCartTotals } from "@/components/site/Overlays";
 import { Container } from "@/components/site/primitives";
 import { formatPrice } from "@/data/catalog";
+import { sendEmailNotification, OFFICIAL_EMAIL } from "@/lib/email";
 import { useStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/checkout")({
-  head: () => seo("Checkout", "Secure checkout for verified healthcare professionals (demo mode)."),
+  head: () => seo("Checkout", "Secure checkout for verified healthcare professionals."),
   component: Checkout,
 });
 
-const steps = ["Shipping", "Payment", "Review"];
+const steps = ["Shipping", "Billing & Payment", "Review & Submit"];
+
+type CheckoutForm = {
+  name: string;
+  clinic: string;
+  email: string;
+  phone: string;
+  lic: string;
+  addr: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+  paymentMethod: string;
+};
+
+const initialForm: CheckoutForm = {
+  name: "",
+  clinic: "",
+  email: "",
+  phone: "",
+  lic: "",
+  addr: "",
+  city: "",
+  state: "",
+  zip: "",
+  country: "",
+  paymentMethod: "Clinic Invoice (Net-30)",
+};
 
 function Checkout() {
   const [step, setStep] = useState(0);
   const [placed, setPlaced] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [orderRef, setOrderRef] = useState("");
+  const [form, setForm] = useState<CheckoutForm>(initialForm);
+
   const { lines, subtotal, discountAmount, discountPercent, shippingAmount, total, currency } = useCartTotals();
   const clear = useStore((s) => s.clear);
+
+  const setVal = (k: keyof CheckoutForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    setForm((prev) => ({ ...prev, [k]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (step < 2) {
+      setStep(step + 1);
+      return;
+    }
+
+    setLoading(true);
+    const generatedId = `MPV-${Math.floor(100000 + Math.random() * 900000)}`;
+    setOrderRef(generatedId);
+
+    const itemizedProducts = lines.map((l) => ({
+      product: l.p.name,
+      brand: l.p.brand,
+      size: l.p.size,
+      quantity: l.qty,
+      unitPrice: formatPrice(l.unit, currency),
+      lineTotal: formatPrice(l.unit * l.qty, currency),
+    }));
+
+    try {
+      await sendEmailNotification({
+        type: "order",
+        subject: `[New Order ${generatedId}] ${form.clinic || "Clinic"} — Total: ${formatPrice(total, currency)}`,
+        senderName: form.name,
+        senderEmail: form.email,
+        clinicName: form.clinic,
+        data: {
+          "Order Reference": generatedId,
+          "Order Date": new Date().toLocaleString(),
+          "Recipient Email": OFFICIAL_EMAIL,
+          "Clinic Name": form.clinic || "—",
+          "Practitioner Name": form.name || "—",
+          "License Number": form.lic || "—",
+          "Clinic Phone": form.phone || "—",
+          "Clinic Email": form.email || "—",
+          "Delivery Address": `${form.addr || ""}, ${form.city || ""}, ${form.state || ""} ${form.zip || ""}, ${form.country || ""}`,
+          "Payment Method": form.paymentMethod || "Invoice",
+          "Item Count": lines.reduce((acc, l) => acc + l.qty, 0),
+          "Items Ordered": itemizedProducts,
+          "Subtotal": formatPrice(subtotal, currency),
+          "Discount": discountAmount > 0 ? `−${formatPrice(discountAmount, currency)} (${discountPercent}%)` : "None",
+          "Cold-Chain Shipping": shippingAmount > 0 ? formatPrice(shippingAmount, currency) : "Free (Order > $500)",
+          "Order Total": formatPrice(total, currency),
+        },
+      });
+
+      toast.success(`Order ${generatedId} submitted to ${OFFICIAL_EMAIL}`);
+      clear();
+      setPlaced(true);
+    } catch (err) {
+      toast.error(`Order placed. Please confirm directly with ${OFFICIAL_EMAIL}`);
+      clear();
+      setPlaced(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (placed)
     return (
@@ -31,24 +127,51 @@ function Checkout() {
           <Check className="h-8 w-8" />
         </span>
         <h1 className="mt-6 font-display text-4xl text-foreground">Order received</h1>
-        <p className="mt-2 text-muted-foreground">Demo order placed successfully. Your account manager has been assigned.</p>
-        <div className="mt-6 flex justify-center gap-3">
+        <p className="mt-2 text-sm font-semibold text-primary">Order Reference: {orderRef}</p>
+        <p className="mx-auto mt-3 max-w-lg text-sm text-muted-foreground">
+          All order specifications, lot traceability requirements, and clinic shipping details have been dispatched to{" "}
+          <strong className="text-foreground">{OFFICIAL_EMAIL}</strong>.
+        </p>
+        <p className="mx-auto mt-2 max-w-md text-xs text-muted-foreground">
+          Your assigned account manager will verify cold-chain inventory availability and issue official invoice documentation.
+        </p>
+        <div className="mt-8 flex justify-center gap-3">
           <Button asChild>
-            <Link to="/account">View order in account</Link>
+            <Link to="/shop">Continue browsing</Link>
           </Button>
           <Button variant="outline" asChild>
-            <Link to="/shop">Continue shopping</Link>
+            <Link to="/">Return to Home</Link>
           </Button>
         </div>
       </Container>
     );
 
-  const F = ({ id, label, type = "text", placeholder }: { id: string; label: string; type?: string; placeholder?: string }) => (
+  const F = ({
+    id,
+    label,
+    type = "text",
+    placeholder,
+    required = true,
+  }: {
+    id: keyof CheckoutForm;
+    label: string;
+    type?: string;
+    placeholder?: string;
+    required?: boolean;
+  }) => (
     <div className="space-y-1.5">
       <Label htmlFor={id} className="text-xs font-medium text-foreground">
-        {label}
+        {label} {required && "*"}
       </Label>
-      <Input id={id} type={type} placeholder={placeholder} required className="h-11 rounded-xl" />
+      <Input
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        value={form[id]}
+        onChange={setVal(id)}
+        className="h-11 rounded-xl"
+      />
     </div>
   );
 
@@ -72,30 +195,25 @@ function Checkout() {
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.5fr_1fr]">
         <form
           className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8"
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (step < 2) setStep(step + 1);
-            else {
-              clear();
-              setPlaced(true);
-            }
-          }}
+          onSubmit={handleSubmit}
         >
           {step === 0 && (
             <div className="space-y-5">
               <h2 className="font-display text-2xl text-foreground">Clinic shipping destination</h2>
+              <p className="text-xs text-muted-foreground">Medprovia ships only to licensed clinical facilities.</p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <F id="name" label="Practitioner full name" placeholder="Dr. Alexandra Rivera" />
                 <F id="clinic" label="Clinic / Practice name" placeholder="Aesthetic Dermatology Clinic" />
-                <F id="lic" label="Professional License #" placeholder="MD-98432-NY" />
+                <F id="email" label="Clinic contact email" type="email" placeholder="orders@aestheticclinic.com" />
                 <F id="phone" label="Clinic direct phone" type="tel" placeholder="+1 (555) 019-2834" />
+                <F id="lic" label="Professional License #" placeholder="MD-98432-NY" />
+                <F id="country" label="Country" placeholder="United States" />
                 <div className="sm:col-span-2">
                   <F id="addr" label="Street address" placeholder="Suite 400, 100 Medical Center Parkway" />
                 </div>
                 <F id="city" label="City" placeholder="New York" />
                 <F id="state" label="State / Province" placeholder="NY" />
                 <F id="zip" label="Postal code" placeholder="10001" />
-                <F id="country" label="Country" placeholder="United States" />
               </div>
             </div>
           )}
@@ -103,21 +221,51 @@ function Checkout() {
           {step === 1 && (
             <div className="space-y-5">
               <div className="flex items-center justify-between">
-                <h2 className="font-display text-2xl text-foreground">Payment method</h2>
+                <h2 className="font-display text-2xl text-foreground">Billing & settlement</h2>
                 <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <ShieldCheck className="h-4 w-4 text-primary" /> 256-bit TLS encrypted
+                  <ShieldCheck className="h-4 w-4 text-primary" /> B2B Verified Billing
                 </span>
               </div>
-              <p className="flex items-center gap-2 rounded-xl bg-sage p-3 text-xs text-muted-foreground">
-                <CreditCard className="h-4 w-4 text-primary" /> Demo mode: No real payment will be charged to your card.
-              </p>
-              <div className="space-y-4">
-                <F id="card" label="Card number" placeholder="4242 •••• •••• 4242" />
-                <div className="grid grid-cols-2 gap-4">
-                  <F id="exp" label="Expiry (MM/YY)" placeholder="12/28" />
-                  <F id="cvc" label="CVC" placeholder="123" />
+
+              <div className="space-y-3">
+                <label className="text-xs font-medium text-foreground">Select settlement preference:</label>
+                <div className="grid gap-2">
+                  {[
+                    { id: "Clinic Invoice (Net-30)", label: "Clinic Invoice (Net-30 upon license verification)", desc: "Invoice delivered via email with lot release documentation" },
+                    { id: "Wire Transfer / BACS", label: "Direct Bank Wire / ACH Transfer", desc: "Banking credentials and pro-forma invoice will be emailed" },
+                    { id: "Corporate Card", label: "Credit / Debit Card (Corporate Account)", desc: "Settlement link generated upon stock allocation" },
+                  ].map((m) => (
+                    <label
+                      key={m.id}
+                      onClick={() => setForm((prev) => ({ ...prev, paymentMethod: m.id }))}
+                      className={cn(
+                        "flex cursor-pointer items-start gap-3 rounded-2xl border p-4 transition",
+                        form.paymentMethod === m.id
+                          ? "border-primary bg-primary/5 text-foreground"
+                          : "border-border text-muted-foreground hover:bg-muted/50",
+                      )}
+                    >
+                      <input
+                        type="radio"
+                        name="payment"
+                        checked={form.paymentMethod === m.id}
+                        onChange={() => setForm((prev) => ({ ...prev, paymentMethod: m.id }))}
+                        className="mt-1 text-primary"
+                      />
+                      <div>
+                        <p className="text-sm font-semibold text-foreground">{m.label}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{m.desc}</p>
+                      </div>
+                    </label>
+                  ))}
                 </div>
-                <F id="cname" label="Cardholder name" placeholder="Alexandra Rivera" />
+              </div>
+
+              <div className="rounded-2xl border border-gold/40 bg-gold/10 p-4 text-xs text-foreground">
+                <p className="font-medium">Direct Email Confirmation</p>
+                <p className="text-muted-foreground mt-1">
+                  Once placed, the purchase order will be sent to <strong>{OFFICIAL_EMAIL}</strong> and copied to your clinic email.
+                </p>
               </div>
             </div>
           )}
@@ -126,21 +274,55 @@ function Checkout() {
             <div className="space-y-4">
               <h2 className="font-display text-2xl text-foreground">Review & place order</h2>
               <p className="text-sm text-muted-foreground">
-                Please verify that your clinic delivery address and license information are correct. All injectables ship with original batch lot tracking documentation.
+                Please verify your clinic delivery address and license information. All injectables ship with original batch lot tracking documentation.
               </p>
-              <div className="rounded-2xl bg-muted/60 p-4 text-sm text-foreground space-y-1">
-                <p className="font-semibold">Temperature-Controlled Express Delivery</p>
-                <p className="text-xs text-muted-foreground">Cold-packed insulated shipper with transit temperature monitor indicator.</p>
+
+              <div className="rounded-2xl bg-muted/60 p-4 text-sm text-foreground space-y-2">
+                <div className="flex items-center gap-2 font-semibold">
+                  <Truck className="h-4 w-4 text-primary" />
+                  <span>Temperature-Controlled Express Logistics</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Insulated cold-chain container with transit temperature monitor indicator included.
+                </p>
+                <div className="pt-2 text-xs border-t border-border grid grid-cols-2 gap-2">
+                  <div>
+                    <span className="text-muted-foreground block">Clinic:</span>
+                    <span className="font-medium">{form.clinic || "—"}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block">Practitioner:</span>
+                    <span className="font-medium">{form.name || "—"}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block">Email:</span>
+                    <span className="font-medium">{form.email || "—"}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block">License #:</span>
+                    <span className="font-medium">{form.lic || "—"}</span>
+                  </div>
+                  <div className="col-span-2">
+                    <span className="text-muted-foreground block">Delivery Destination:</span>
+                    <span className="font-medium">{form.addr}, {form.city}, {form.state} {form.zip}, {form.country}</span>
+                  </div>
+                </div>
               </div>
             </div>
           )}
 
           <div className="mt-8 flex justify-between border-t border-border pt-6">
-            <Button type="button" variant="outline" disabled={step === 0} onClick={() => setStep(step - 1)}>
+            <Button type="button" variant="outline" disabled={step === 0 || loading} onClick={() => setStep(step - 1)}>
               Back
             </Button>
-            <Button type="submit" disabled={!lines.length} size="lg">
-              {step === 2 ? "Place order" : "Continue"}
+            <Button type="submit" disabled={!lines.length || loading} size="lg">
+              {loading ? (
+                <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Submitting order...</>
+              ) : step === 2 ? (
+                "Place order (Submit to email)"
+              ) : (
+                "Continue"
+              )}
             </Button>
           </div>
         </form>

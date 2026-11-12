@@ -198,10 +198,9 @@ export function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => 
             </div>
             <div className="mx-4 rounded-2xl bg-mesh p-4 border border-border">
               <p className="font-display text-lg text-foreground">{verified ? "You're verified" : "Welcome, practitioner"}</p>
-              <p className="text-sm text-muted-foreground">Sign in or verify your license to see pricing and order.</p>
-              <div className="mt-3 flex gap-2">
-                <Button size="sm" variant="outline" asChild><Link to="/account">Sign in</Link></Button>
-                <Button size="sm" variant="gold" asChild><Link to="/register">Get Verified</Link></Button>
+              <p className="text-sm text-muted-foreground">Submit your medical license for wholesale pricing.</p>
+              <div className="mt-3">
+                <Button size="sm" variant="gold" className="w-full" asChild><Link to="/register">Get Verified</Link></Button>
               </div>
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-2">
