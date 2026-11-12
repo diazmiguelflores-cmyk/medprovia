@@ -20,6 +20,45 @@ export const Route = createFileRoute("/checkout")({
 
 const steps = ["Shipping", "Billing & Payment", "Review & Submit"];
 
+// ─── Field component defined at MODULE scope so React never re-mounts it ───
+// (Defining it inside the Checkout function causes React to treat it as a new
+//  component type on every render, which unmounts+remounts the input and loses
+//  the cursor after every keystroke.)
+function CheckoutField({
+  id,
+  label,
+  form,
+  onChange,
+  type = "text",
+  placeholder,
+  required = true,
+}: {
+  id: keyof CheckoutForm;
+  label: string;
+  form: CheckoutForm;
+  onChange: (k: keyof CheckoutForm) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type?: string;
+  placeholder?: string;
+  required?: boolean;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <Label htmlFor={id} className="text-xs font-medium text-foreground">
+        {label} {required && "*"}
+      </Label>
+      <Input
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        value={form[id]}
+        onChange={onChange(id)}
+        className="h-11 rounded-xl"
+      />
+    </div>
+  );
+}
+
 type CheckoutForm = {
   name: string;
   clinic: string;
@@ -120,6 +159,11 @@ function Checkout() {
     }
   };
 
+  // Alias so JSX below stays concise
+  const F = (props: Omit<React.ComponentProps<typeof CheckoutField>, "form" | "onChange">) => (
+    <CheckoutField {...props} form={form} onChange={setVal} />
+  );
+
   if (placed)
     return (
       <Container className="py-24 text-center lg:pt-40">
@@ -145,35 +189,6 @@ function Checkout() {
         </div>
       </Container>
     );
-
-  const F = ({
-    id,
-    label,
-    type = "text",
-    placeholder,
-    required = true,
-  }: {
-    id: keyof CheckoutForm;
-    label: string;
-    type?: string;
-    placeholder?: string;
-    required?: boolean;
-  }) => (
-    <div className="space-y-1.5">
-      <Label htmlFor={id} className="text-xs font-medium text-foreground">
-        {label} {required && "*"}
-      </Label>
-      <Input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        required={required}
-        value={form[id]}
-        onChange={setVal(id)}
-        className="h-11 rounded-xl"
-      />
-    </div>
-  );
 
   return (
     <Container className="py-8 lg:pt-36">

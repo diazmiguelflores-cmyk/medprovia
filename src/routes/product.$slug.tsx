@@ -104,7 +104,7 @@ function ProductPage() {
 
           <div className="w-full min-w-0">
             <Link to="/brands/$slug" params={{ slug: p.brand }} className="text-sm font-semibold uppercase tracking-widest text-primary">{brandName(p.brand)}</Link>
-            <h1 className="mt-2 text-2xl font-semibold text-foreground sm:text-4xl lg:text-5xl break-words leading-tight">{p.name}</h1>
+            <h1 className="mt-2 text-xl font-semibold text-foreground sm:text-3xl lg:text-4xl break-words leading-tight">{p.name}</h1>
             <p className="mt-2 text-sm sm:text-base text-muted-foreground break-words">{p.size} · {p.inStock ? "In stock" : "Out of stock"}</p>
             <div className="mt-4"><ApprovalBadges p={p} /></div>
             <div className="mt-5 flex items-start gap-3 rounded-2xl border border-gold/40 bg-gold/10 p-4 text-xs sm:text-sm text-foreground">
